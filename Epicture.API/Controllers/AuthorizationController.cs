@@ -29,24 +29,24 @@ namespace Epicture.API.Controllers
 
         #region ROUTES
 
-        [HttpGet("")]
+        [HttpGet]
         public async Task<IActionResult> GetLogin(
             [FromQuery] string client_id,
             [FromQuery] string response_type)
         {
-            string accesspage = null;
+            string response;
 
             _logger.LogInformation($"Requesting Access Page");
             try
             {
-                accesspage = await _authorizationService.GetLoginPage(client_id, response_type);
+                response = await _authorizationService.GetLoginPage(client_id, response_type);
             }
             catch (ApiException e)
             {
                 _logger.LogError($"Something went wrong with the external API. Details: {e}");
                 return StatusCode((int)e.StatusCode);
             }
-            return Ok(accesspage);
+            return Ok(response);
         }
 
         #endregion ROUTES

@@ -1,10 +1,10 @@
 ﻿using System.Threading.Tasks;
 using System.Collections.Generic;
+using Newtonsoft.Json;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Http;
 using Refit;
-using Newtonsoft.Json;
 using Epicture.API.Services;
 using Epicture.API.Models;
 
@@ -62,23 +62,25 @@ namespace Epicture.API.Controllers
 
         [HttpPost("upload")]
         public async Task<IActionResult> PostUpload(
-            [FromForm] IFormFile image,
-            [FromHeader] string Authorization)
+            [FromHeader] string Authorization,
+            [FromForm] IFormFile image)
         {
-            string upload;
-            var streamPart = new StreamPart(image.OpenReadStream(), image.Name, image.ContentType);
+            string response;
+            StreamPart streamPart = new StreamPart(image.OpenReadStream(), image.Name, image.ContentType);
+            ImgurResponseModel<ImageModel> model;
 
-            _logger.LogInformation($"Posting image {image}");
+            _logger.LogInformation($"Posting image!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
             try
             {
-                upload = await _imageService.PostImage(streamPart, Authorization);
+                response = await _imageService.PostImage(streamPart, Authorization);
+                model = JsonConvert.DeserializeObject<ImgurResponseModel<ImageModel>>(response);
             }
             catch (ApiException e)
             {
                 _logger.LogError($"Something went wrong with the external API. Details: {e}");
                 return StatusCode((int)e.StatusCode);
             }
-            return Ok(upload);
+            return Ok(model);
         }
 
         #endregion ROUTES
