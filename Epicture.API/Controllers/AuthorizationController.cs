@@ -2,12 +2,14 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Epicture.API.Services;
+using Epicture.API.Models;
+using Newtonsoft.Json;
 using Refit;
 
 namespace Epicture.API.Controllers
 {
     [ApiController]
-    [Route("login")]
+    [Route("[controller]")]
     public class AuthorizationController : Controller
     {
         #region MEMBERS
@@ -29,7 +31,7 @@ namespace Epicture.API.Controllers
 
         #region ROUTES
 
-        [HttpGet]
+        [HttpGet("login")]
         public async Task<IActionResult> GetLogin(
             [FromQuery] string client_id,
             [FromQuery] string response_type)
@@ -47,6 +49,30 @@ namespace Epicture.API.Controllers
                 return StatusCode((int)e.StatusCode);
             }
             return Ok(response);
+        }
+
+        [HttpPost("token")]
+        public async Task<IActionResult> PostToken(
+            [FromForm] string refresh_token,
+            [FromForm] string client_id,
+            [FromForm] string client_secret,
+            [FromForm] string grant_type)
+        {
+            string response;
+            TokensModel model;
+
+            _logger.LogInformation($"Requesting new access token");
+            try
+            {
+                response = await _authorizationService.PostTokenGen(refresh_token, client_id, client_secret, grant_type);
+                model = JsonConvert.DeserializeObject<TokensModel>(response);
+            }
+            catch (ApiException e)
+            {
+                _logger.LogError($"Something went wrong with the external API. Details: {e}");
+                return StatusCode((int)e.StatusCode);
+            }
+            return Ok(model);
         }
 
         #endregion ROUTES

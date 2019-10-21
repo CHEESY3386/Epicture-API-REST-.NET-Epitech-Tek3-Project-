@@ -98,6 +98,14 @@ namespace Epicture.API.Services
             var func = requestBuilder.BuildRestResultFuncForMethod("GetLoginPage", new Type[] { typeof(string), typeof(string) });
             return (Task<string>)func(Client, arguments);
         }
+
+        /// <inheritdoc />
+        Task<string> IAuthorizationService.PostTokenGen(string refresh_token, string clien_id, string client_secret, string grant_type)
+        {
+            var arguments = new object[] { refresh_token, clien_id, client_secret, grant_type };
+            var func = requestBuilder.BuildRestResultFuncForMethod("PostTokenGen", new Type[] { typeof(string), typeof(string), typeof(string), typeof(string) });
+            return (Task<string>)func(Client, arguments);
+        }
     }
 }
 

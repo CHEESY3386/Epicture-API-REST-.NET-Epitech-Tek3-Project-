@@ -17,7 +17,7 @@ namespace Epicture.API.Services
         [Multipart]
         [Post("/3/upload")]
         Task<string> PostImage(
-            StreamPart image,
+            [AliasAs("image")] StreamPart image,
             [Header("Authorization")] string accesstoken);
     }
 }

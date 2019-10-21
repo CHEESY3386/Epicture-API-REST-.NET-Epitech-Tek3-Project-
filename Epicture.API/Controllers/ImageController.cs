@@ -69,7 +69,7 @@ namespace Epicture.API.Controllers
             StreamPart streamPart = new StreamPart(image.OpenReadStream(), image.Name, image.ContentType);
             ImgurResponseModel<ImageModel> model;
 
-            _logger.LogInformation($"Posting image!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+            _logger.LogInformation($"Posting image");
             try
             {
                 response = await _imageService.PostImage(streamPart, Authorization);
