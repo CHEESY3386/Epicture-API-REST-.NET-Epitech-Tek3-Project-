@@ -132,9 +132,9 @@ namespace Epicture.API.Services
         }
 
         /// <inheritdoc />
-        Task<string> IImageService.GetSearchImages(string sort, string window, string page, string keyword, string accessToken)
+        Task<string> IImageService.GetSearchImages(string sort, string window, string page, string q, string accessToken)
         {
-            var arguments = new object[] { sort, window, page, keyword, accessToken };
+            var arguments = new object[] { sort, window, page, q, accessToken };
             var func = requestBuilder.BuildRestResultFuncForMethod("GetSearchImages", new Type[] { typeof(string), typeof(string), typeof(string), typeof(string), typeof(string) });
             return (Task<string>)func(Client, arguments);
         }

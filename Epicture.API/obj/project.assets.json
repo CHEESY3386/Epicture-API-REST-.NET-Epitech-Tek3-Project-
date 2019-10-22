@@ -717,11 +717,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\$1QV000-EHM137HJMELE\\Desktop\\Epicture.API\\Epicture.API.csproj",
+      "projectUniqueName": "C:\\Users\\$1QV000-EHM137HJMELE\\Desktop\\DEV_epicture_2019\\Epicture.API\\Epicture.API.csproj",
       "projectName": "Epicture.API",
-      "projectPath": "C:\\Users\\$1QV000-EHM137HJMELE\\Desktop\\Epicture.API\\Epicture.API.csproj",
+      "projectPath": "C:\\Users\\$1QV000-EHM137HJMELE\\Desktop\\DEV_epicture_2019\\Epicture.API\\Epicture.API.csproj",
       "packagesPath": "C:\\Users\\$1QV000-EHM137HJMELE\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\$1QV000-EHM137HJMELE\\Desktop\\Epicture.API\\obj\\",
+      "outputPath": "C:\\Users\\$1QV000-EHM137HJMELE\\Desktop\\DEV_epicture_2019\\Epicture.API\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Microsoft\\Xamarin\\NuGet\\",

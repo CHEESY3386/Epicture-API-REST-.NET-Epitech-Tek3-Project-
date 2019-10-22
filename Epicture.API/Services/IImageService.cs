@@ -5,12 +5,12 @@ namespace Epicture.API.Services
 {
     public interface IImageService
     {
-        [Get("/3/gallery/search/{sort}/{window}/{page}?q={keyword}")]
+        [Get("/3/gallery/search/{sort}/{window}/{page}")]
         Task<string> GetSearchImages(
             [AliasAs("sort")] string sort,
             [AliasAs("window")] string window,
             [AliasAs("page")] string page,
-            [AliasAs("keyword")] string keyword,
+            [Query] string q,
             [Header("Authorization")] string accessToken);
 
         [Multipart]
