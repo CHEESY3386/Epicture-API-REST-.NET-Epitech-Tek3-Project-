@@ -4,6 +4,7 @@ using System.Net.Http;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Refit;
+using Epicture.API.Params;
 
 /* ******** Hey You! *********
  *
@@ -92,10 +93,10 @@ namespace Epicture.API.Services
         }
 
         /// <inheritdoc />
-        Task<string> IAuthorizationService.GetLoginPage(string clientId, string responseType)
+        Task<string> IAuthorizationService.GetLoginPage(AuthQueryParams par)
         {
-            var arguments = new object[] { clientId, responseType };
-            var func = requestBuilder.BuildRestResultFuncForMethod("GetLoginPage", new Type[] { typeof(string), typeof(string) });
+            var arguments = new object[] { par };
+            var func = requestBuilder.BuildRestResultFuncForMethod("GetLoginPage", new Type[] { typeof(AuthQueryParams) });
             return (Task<string>)func(Client, arguments);
         }
 

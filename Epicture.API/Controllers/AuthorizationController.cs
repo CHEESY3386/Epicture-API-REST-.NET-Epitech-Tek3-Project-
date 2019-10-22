@@ -5,6 +5,7 @@ using Epicture.API.Services;
 using Epicture.API.Models;
 using Newtonsoft.Json;
 using Refit;
+using Epicture.API.Params;
 
 namespace Epicture.API.Controllers
 {
@@ -39,11 +40,12 @@ namespace Epicture.API.Controllers
             [FromQuery] string response_type)
         {
             string response;
+            AuthQueryParams query = new AuthQueryParams(client_id, response_type);
 
             _logger.LogInformation($"Requesting Access Page");
             try
             {
-                response = await _authorizationService.GetLoginPage(client_id, response_type);
+                response = await _authorizationService.GetLoginPage(query);
             }
             catch (ApiException e)
             {

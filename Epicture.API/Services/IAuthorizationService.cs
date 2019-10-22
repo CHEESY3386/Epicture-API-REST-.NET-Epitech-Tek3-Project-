@@ -1,14 +1,14 @@
 ﻿using System.Threading.Tasks;
 using Refit;
+using Epicture.API.Params;
 
 namespace Epicture.API.Services
 {
     public interface IAuthorizationService
     {
-        [Get("/oauth2/authorize?client_id={clientId}&response_type={responseType}")]
+        [Get("/oauth2/authorize")]
         Task<string> GetLoginPage(
-            [AliasAs("clientId")] string clientId,
-            [AliasAs("responseType")] string responseType);
+            [Query] AuthQueryParams par);
 
         [Multipart]
         [Post("/oauth2/token")]
