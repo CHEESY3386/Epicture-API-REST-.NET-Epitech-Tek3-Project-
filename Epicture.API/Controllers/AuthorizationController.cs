@@ -31,6 +31,8 @@ namespace Epicture.API.Controllers
 
         #region ROUTES
 
+        #region GETS
+
         [HttpGet("login")]
         public async Task<IActionResult> GetLogin(
             [FromQuery] string client_id,
@@ -50,6 +52,10 @@ namespace Epicture.API.Controllers
             }
             return Ok(response);
         }
+
+        #endregion GETS
+
+        #region POSTS
 
         [HttpPost("token")]
         public async Task<IActionResult> PostToken(
@@ -74,6 +80,8 @@ namespace Epicture.API.Controllers
             }
             return Ok(model);
         }
+
+        #endregion POSTS
 
         #endregion ROUTES
     }

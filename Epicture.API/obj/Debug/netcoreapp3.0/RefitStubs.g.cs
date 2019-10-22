@@ -146,5 +146,13 @@ namespace Epicture.API.Services
             var func = requestBuilder.BuildRestResultFuncForMethod("PostImage", new Type[] { typeof(StreamPart), typeof(string) });
             return (Task<string>)func(Client, arguments);
         }
+
+        /// <inheritdoc />
+        Task<string> IImageService.DeleteImage(string imageHash, string accesstoken)
+        {
+            var arguments = new object[] { imageHash, accesstoken };
+            var func = requestBuilder.BuildRestResultFuncForMethod("DeleteImage", new Type[] { typeof(string), typeof(string) });
+            return (Task<string>)func(Client, arguments);
+        }
     }
 }

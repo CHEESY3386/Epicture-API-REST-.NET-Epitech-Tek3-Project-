@@ -32,6 +32,8 @@ namespace Epicture.API.Controllers
 
         #region ROUTES
 
+        #region GETS
+
         [HttpGet("{username}")]
         public async Task<IActionResult> GetBase(
             [FromRoute] string username,
@@ -75,6 +77,8 @@ namespace Epicture.API.Controllers
             }
             return Ok(model);
         }
+
+        #endregion GETS
 
         #endregion ROUTES
     }

@@ -12,5 +12,8 @@ namespace Epicture.API.Models
 
         [JsonProperty("link")]
         public string Link { get; set; }
+
+        [JsonProperty("deletehash")]
+        public string DeleteHash { get; set; }
     }
 }
